@@ -4,31 +4,30 @@
  * @version      $Id$
  * @package      Google Map - Directions
  * @subpackage   mod_gmdirections
- * @copyright    Copyright (C) 2009-2012 Noxidsoft. All rights reserved.
+ * @copyright    Copyright (C) 2007-2013 Noxidsoft. All rights reserved.
  * @license      GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
  * @author       Noxidsoft <admin@noxidsoft.com>
  */
 -->
 <extension
 	type="module"
-	version="2.5"
+	version="3.0.0"
 	client="site"
 	method="upgrade">
     <name>Google Map - Directions</name> 
     <author>&lt;a href='http://www.noxidsoft.com/' target='blank' style=''&gt;&lt;b&gt;Noxidsoft - Noel Dixon&lt;/b&gt;&lt;/a&gt;</author> 
-    <creationDate>May 2012</creationDate> 
-    <copyright>(c) 2009-2012. Noxidsoft. All rights reserved.</copyright> 
+    <creationDate>August 2013</creationDate> 
+    <copyright>(c) 2007-2013. Noxidsoft. All rights reserved.</copyright> 
     <license>GPL 2.0</license> 
     <authorEmail>admin@noxidsoft.com</authorEmail> 
     <authorUrl>www.noxidsoft.com</authorUrl> 
-    <version>2.5.4.16</version> 
+    <version>3.1.4.95</version> 
     <description>MOD_GMDIRECTIONS_DESCRIPTION</description>
 
 <!-- Listing of all files that should be installed for the module to function -->
     <files>
 	    <!-- The "module" attribute signifies that this is the main controller file -->
 	    <filename module="mod_gmdirections">mod_gmdirections.php</filename>
-	    <filename>params.ini</filename>
 	    <filename>index.html</filename>
 	    <folder>css</folder>
 	    <folder>js</folder>
@@ -40,7 +39,11 @@
      <config>
      	<fields name="params">
 				<fieldset name="basic">
-					<field type="spacer" label="MOD_GENERAL_SETTINGS_SPACER" />
+					
+					<field name="toggle_active" type="list" default="1" label="MOD_DIR_TOGGLE_ACTIVE_LABEL" description="MOD_DIR_TOGGLE_ACTIVE_DESC">
+					  <option value="0">MOD_MASTER_SWITCH_STANDARD</option>
+  					<option value="1">MOD_MASTER_SWITCH_DIRECTIONS</option>
+					</field>
 					
 					<field name="zoom" type="list" default="12" label="MOD_GENERAL_ZOOM_LABEL" description="MOD_GENERAL_ZOOM_DESC">
 					  <option value="0">MOD_ZOOM_VALUE_0</option>
@@ -70,8 +73,10 @@
   					<option value="1">MOD_ON</option>
 					</field>
 					
-					<field type="spacer" />
-					<field type="spacer" label="MOD_STANDARD_MAP_SPACER" />
+				</fieldset>
+					
+				<fieldset name="standard_map" label="MOD_STANDARD_MAP_SPACER">
+					
 					<field type="spacer" label="MOD_STANDARD_MAP_NOTE" />
 					
 					<field name="address" type="text" default="Toowoomba, QLD" label="MOD_ADDRESS_LABEL" description="MOD_ADDRESS_DESC" size="40" />
@@ -113,14 +118,11 @@
 						<option value="2">MOD_RIGHT</option>
 					</field>
 					
-					<field type="spacer" />
-					<field type="spacer" label="MOD_DIRECTIONS_MAP_SPACER" />
-					<field type="spacer" label="MOD_DIRECTIONS_MAP_NOTE" />
+				</fieldset>
 					
-					<field name="toggle_active" type="radio" default="1" label="MOD_DIR_TOGGLE_ACTIVE_LABEL" description="MOD_DIR_TOGGLE_ACTIVE_DESC">
-					  <option value="0">MOD_OFF</option>
-  					<option value="1">MOD_MASTER_SWITCH_ON</option>
-					</field>
+				<fieldset name="directions_map" label="MOD_DIRECTIONS_MAP_SPACER">
+					
+					<field type="spacer" label="MOD_DIRECTIONS_MAP_NOTE" />
 
 					<field name="toggle_mode" type="radio" default="1" label="MOD_DIR_TOGGLE_MODE_LABEL" description="MOD_DIR_TOGGLE_MODE_DESC">
 					  <option value="0">MOD_MARKER</option>
@@ -156,41 +158,50 @@
 					<field name="mainmap" type="hidden" default="1" />
 					
 				</fieldset>
-				<fieldset name="advanced">
-					<field
-						name="layout"
-						type="modulelayout"
-						label="JFIELD_ALT_LAYOUT_LABEL"
-						description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
-					<field
-						name="moduleclass_sfx"
-						type="text"
-						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
-					<field
-						name="cache"
-						type="list"
-						default="1"
-						label="COM_MODULES_FIELD_CACHING_LABEL"
-						description="COM_MODULES_FIELD_CACHING_DESC">
-						<option
-							value="1">JGLOBAL_USE_GLOBAL</option>
-						<option
-							value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
-					</field>
-					<field
-						name="cache_time"
-						type="text"
-						default="900"
-						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-						description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
-					<field
-						name="cachemode"
-						type="hidden"
-						default="itemid">
-						<option value="itemid"></option>
-					</field>
-				</fieldset>
+				
+				<fieldset
+				name="advanced">
+
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+
+			</fieldset>
 			</fields>
 		</config>
 </extension>

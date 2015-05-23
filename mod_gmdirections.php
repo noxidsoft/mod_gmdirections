@@ -3,7 +3,7 @@
  * @version      $Id$
  * @package      Google Map - Directions
  * @subpackage   mod_gmdirections
- * @copyright    Copyright (C) 2009-2012 Noxidsoft. All rights reserved.
+ * @copyright    Copyright (C) 2007-2013 Noxidsoft. All rights reserved.
  * @license      GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
  * @author       Noxidsoft <admin@noxidsoft.com>
  */
@@ -52,7 +52,7 @@ if($toggle_active == 1) { // if the directions map has been turned ON...
 <link rel="stylesheet" href="<?php echo $baseUrl ?>modules/mod_gmdirections/css/template.css" type="text/css" />
 
 <?php
-	$document = &JFactory::getDocument();
+	$document = JFactory::getDocument();
 	$document->addScript( 'http://maps.google.com/maps/api/js?sensor=false' );
 	
 	// only load what we need
