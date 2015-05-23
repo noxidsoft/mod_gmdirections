@@ -13,29 +13,29 @@ defined('_JEXEC') or die();
 
 $baseUrl = JURI::base();
 
-$address				= $params->get( 'address' );
-$height 				= $params->get( 'height' );
-$width 					= $params->get( 'width' );
-$zoom 					= $params->get( 'zoom' );
-$marker_icon			= $params->get( 'marker_icon' );
+$address					= $params->get( 'address' );
+$height 					= $params->get( 'height' );
+$width 						= $params->get( 'width' );
+$zoom 						= $params->get( 'zoom' );
+$marker_icon				= $params->get( 'marker_icon' );
 $toggle_search 			= $params->get( 'toggle_search' );
 $toggle_buttontext 		= $params->get( 'toggle_buttontext' );
 $toggle_topbottom 		= $params->get( 'toggle_topbottom' );
-$toggle_leftmiddleright = $params->get( 'toggle_leftmiddleright' );
+$toggle_leftmiddleright 	= $params->get( 'toggle_leftmiddleright' );
 $toggle_mapcontrols		= $params->get( 'toggle_mapcontrols' );
-$toggle_active			= $params->get( 'toggle_active' );
+$toggle_active				= $params->get( 'toggle_active' );
 $toggle_directions 		= $params->get( 'toggle_directions' );
-$toggle_mode	 		= $params->get( 'toggle_mode' );
-$start 					= $params->get( 'start' );
-$end 					= $params->get( 'end' );
-$toggle_buttondirtext 	= $params->get( 'toggle_buttondirtext' );
-$mainmap 				= $params->get( 'mainmap' );
-$dirheight				= $params->get( 'dirheight' );
-$panelfloat				= $params->get( 'panelfloat' );
+$toggle_mode	 			= $params->get( 'toggle_mode' );
+$start 						= $params->get( 'start' );
+$end 						= $params->get( 'end' );
+$toggle_buttondirtext 		= $params->get( 'toggle_buttondirtext' );
+$mainmap 					= $params->get( 'mainmap' );
+$dirheight					= $params->get( 'dirheight' );
+$panelfloat					= $params->get( 'panelfloat' );
 $toggle_showdironly		= $params->get( 'toggle_showdironly' );
-$travel					= $params->get( 'travel' );
+$travel						= $params->get( 'travel' );
 
-$moduleclass_sfx = htmlspecialchars($params->get( 'moduleclass_sfx' ));
+//$moduleclass_sfx = htmlspecialchars($params->get( 'moduleclass_sfx' ));
 
 if($toggle_active == 1) { // if the directions map has been turned ON...
 	$toggle_search 		= 0;	// turn off the mainmap search widget
@@ -236,4 +236,5 @@ if($toggle_active == 1) { // if the directions map has been turned ON...
 
 </body>
 </html>
+
 
