@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
 /**
  * @version      $Id$
  * @package      Google Map - Directions
  * @subpackage   mod_gmdirections
- * @copyright    Copyright (C) 2007-2013 Noxidsoft. All rights reserved.
+ * @copyright    Copyright (C) 2007-2016 Noxidsoft. All rights reserved.
  * @license      GNU General Public License <http://www.gnu.org/copyleft/gpl.html>
  * @author       Noxidsoft <admin@noxidsoft.com>
  */
@@ -14,14 +14,14 @@
 	version="3.0.0"
 	client="site"
 	method="upgrade">
-    <name>Google Map - Directions</name> 
-    <author>&lt;a href='http://www.noxidsoft.com/' target='blank' style=''&gt;&lt;b&gt;Noxidsoft - Noel Dixon&lt;/b&gt;&lt;/a&gt;</author> 
-    <creationDate>November 2013</creationDate> 
-    <copyright>(c) 2007-2013. Noxidsoft. All rights reserved.</copyright> 
-    <license>GPL 2.0</license> 
-    <authorEmail>admin@noxidsoft.com</authorEmail> 
-    <authorUrl>www.noxidsoft.com</authorUrl> 
-    <version>3.2.4</version> 
+    <name>Google Map - Directions</name>
+    <author>&lt;a href='http://www.noxidsoft.com/' target='blank' style=''&gt;&lt;b&gt;Noxidsoft - Noel Dixon&lt;/b&gt;&lt;/a&gt;</author>
+    <creationDate>November 2013</creationDate>
+    <copyright>(c) 2007-2013. Noxidsoft. All rights reserved.</copyright>
+    <license>GPL 2.0</license>
+    <authorEmail>admin@noxidsoft.com</authorEmail>
+    <authorUrl>www.noxidsoft.com</authorUrl>
+    <version>3.3.1</version>
     <description>MOD_GMDIRECTIONS_DESCRIPTION</description>
 
 <!-- Listing of all files that should be installed for the module to function -->
@@ -35,17 +35,20 @@
 	    <folder>language</folder>
 	    <folder>tmpl</folder>
     </files>
- 
+
     <!-- Optional parameters -->
      <config>
      		<fields name="params">
 			<fieldset name="basic">
-				
+
+				<field name="google_api_key" type="text" default="" label="MOD_GOOGLE_API_KEY_LABEL" description="MOD_GOOGLE_API_KEY_DESC" size="40" />
+				<field type="spacer" label="MOD_GOOGLE_API_KEY_NOTE" />
+
 				<field name="toggle_active" type="list" default="1" label="MOD_DIR_TOGGLE_ACTIVE_LABEL" description="MOD_DIR_TOGGLE_ACTIVE_DESC">
 				  <option value="0">MOD_MASTER_SWITCH_STANDARD</option>
 					<option value="1">MOD_MASTER_SWITCH_DIRECTIONS</option>
 				</field>
-				
+
 				<field name="zoom" type="list" default="12" label="MOD_GENERAL_ZOOM_LABEL" description="MOD_GENERAL_ZOOM_DESC">
 				  <option value="0">MOD_ZOOM_VALUE_0</option>
 					<option value="1">MOD_ZOOM_VALUE_1</option>
@@ -68,20 +71,20 @@
 					<option value="18">MOD_ZOOM_VALUE_18</option>
 					<option value="19">MOD_ZOOM_VALUE_19</option>
 				</field>
-				
+
 				<field name="toggle_mapcontrols" type="radio" default="1" label="MOD_GENERAL_TOGGLE_MAP_CONTROLS_LABEL" description="MOD_GENERAL_TOGGLE_MAP_CONTROLS_DESC">
 				 	<option value="0">MOD_OFF</option>
 					<option value="1">MOD_ON</option>
 				</field>
-				
+
 			</fieldset>
-				
+
 			<fieldset name="standard_map" label="MOD_STANDARD_MAP_SPACER">
-				
+
 				<field type="spacer" label="MOD_STANDARD_MAP_NOTE" />
-				
+
 				<field name="address" type="text" default="Toowoomba, QLD" label="MOD_ADDRESS_LABEL" description="MOD_ADDRESS_DESC" size="40" />
-				
+
 				<field name="marker_icon" type="list" default="4" label="MOD_MARKER_ICON_LABEL" description="MOD_MARKER_ICON_DESC">
 				  <option value="0">MOD_MARKER_ICON_VALUE_0</option>
 					<option value="1">MOD_MARKER_ICON_VALUE_1</option>
@@ -96,18 +99,18 @@
 					<option value="10">MOD_MARKER_ICON_VALUE_10</option>
 					<option value="11">MOD_MARKER_ICON_VALUE_11</option>
 				</field>
-				
+
 				<field name="height" type="text" default="480" label="MOD_STANDARD_HEIGHT_LABEL" description="MOD_STANDARD_HEIGHT_DESC" size="5" />
-				
+
 				<field name="width" type="text" default="320" label="MOD_STANDARD_WIDTH_LABEL" description="MOD_STANDARD_WIDTH_DESC" size="5" />
-				
+
 				<field name="toggle_search" type="radio" default="1" label="MOD_STANDARD_TOGGLE_SEARCH_LABEL" description="MOD_STANDARD_TOGGLE_SEARCH_DESC">
 				 	<option value="0">MOD_OFF</option>
 					<option value="1">MOD_ON</option>
 				</field>
-				
+
 				<field name="toggle_buttontext" type="text" default="Find" label="MOD_STANDARD_TOGGLE_BUTTON_TEXT_LABEL" description="MOD_STANDARD_TOGGLE_BUTTON_TEXT_DESC" size="40" />
-				
+
 				<field name="toggle_topbottom" type="radio" default="1" label="MOD_STANDARD_TOGGLE_TOP_BOTTOM_LABEL" description="MOD_STANDARD_TOGGLE_TOP_BOTTOM_DESC">
 				  <option value="0">MOD_TOP</option>
 					<option value="1">MOD_BOTTOM</option>
@@ -118,48 +121,48 @@
 					<option value="1">MOD_MIDDLE</option>
 					<option value="2">MOD_RIGHT</option>
 				</field>
-				
+
 			</fieldset>
-				
+
 			<fieldset name="directions_map" label="MOD_DIRECTIONS_MAP_SPACER">
-				
+
 				<field type="spacer" label="MOD_DIRECTIONS_MAP_NOTE" />
 
 				<field name="toggle_mode" type="radio" default="1" label="MOD_DIR_TOGGLE_MODE_LABEL" description="MOD_DIR_TOGGLE_MODE_DESC">
 				  <option value="0">MOD_MARKER</option>
 					<option value="1">MOD_DIRECTIONS</option>
 				</field>
-				
+
 				<field name="start" type="text" default="Crows Nest, QLD" label="MOD_DIR_START_LABEL" description="MOD_DIR_START_DESC" size="40" />
-				
+
 				<field name="end" type="text" default="Toowoomba, QLD" label="MOD_DIR_END_LABEL" description="MOD_DIR_END_DESC" size="40" />
-				
+
 				<field name="dirheight" type="text" default="600" label="MOD_DIR_HEIGHT_LABEL" description="MOD_DIR_HEIGHT_DESC" size="5" />
-				
+
 				<field type="spacer" label="MOD_DIR_WIDTH_NOTE" />
-				
+
 				<field name="panelfloat" type="radio" default="1" label="MOD_DIR_PANEL_FLOAT_LABEL" description="MOD_DIR_PANEL_FLOAT_DESC">
 				  <option value="0">MOD_LEFT</option>
 					<option value="1">MOD_RIGHT</option>
 					<option value="2">MOD_OFF</option>
 				</field>
-				
+
 				<field name="toggle_showdironly" type="radio" default="1" label="MOD_DIR_TOGGLE_SHOW_DIR_ONLY_LABEL" description="MOD_DIR_TOGGLE_SHOW_DIR_ONLY_DESC">
 				  <option value="0">MOD_YES</option>
 					<option value="1">MOD_NO</option>
 				</field>
-				
+
 				<field name="toggle_buttondirtext" type="text" default="Direct Me" label="MOD_DIR_TOGGLE_BUTTON_DIR_TEXT_LABEL" description="MOD_DIR_TOGGLE_BUTTON_DIR_TEXT_DESC" size="40" />
-				
+
 				<field name="travel" type="radio" default="0" label="MOD_DIR_TRAVEL_LABEL" description="MOD_DIR_TRAVEL_DESC">
 				  <option value="0">MOD_DRIVING</option>
 					<option value="1">MOD_WALKING</option>
 				</field>
-				
+
 				<field name="mainmap" type="hidden" default="1" />
-				
+
 			</fieldset>
-			
+
 			<fieldset
 			name="advanced">
 			<field
