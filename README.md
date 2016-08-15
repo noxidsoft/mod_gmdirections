@@ -3,3 +3,7 @@ This Joomla module has been created to show a Google map according to specific t
 
 ###It's still free!###
 Language support for Hindi.
+
+Added support for Google API key requirement.
+Grab a key here:
+https://developers.google.com/maps/documentation/javascript/get-api-key
